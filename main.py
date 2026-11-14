@@ -8,7 +8,7 @@ def main():
     try:
         with open("users.json", "r", encoding='utf-8') as file:
             data = json.load(file)
-            users = User.from_dict(data)
+            users = [User.from_dict(user) for user in data]
 
     except FileNotFoundError:
         users = []
@@ -19,9 +19,9 @@ def main():
         case "1":
             clear()
             user = login(users)
-            while user == None:
+            if user == None:
                 print("Usuário não encontrado.\n")
-                user = login(users)
+                return
                 
         case "2":
             clear()
@@ -41,8 +41,8 @@ def main():
             clear()
             print("Opção inválida\n")
 
-    clear()
-    print(f"Bem vindo {user.name}")
+    clear() 
+    print(f"Bem vindo {user.name.upper()}!")
     while True:
         opt = main_menu()
         match opt:
@@ -77,9 +77,8 @@ def main():
 
             case "0":
                 clear()
-                with open("user.json", "w", encoding='utf-8') as file:
-                    for user in users:
-                        json.dump(user.to_dict(), file, indent=4, ensure_ascii=False)
+                with open("users.json", "w", encoding='utf-8') as file:
+                    json.dump([user.to_dict() for user in users], file, indent=4, ensure_ascii=False)
 
                 print("O usuário encerrou o sistema.\n")
                 break

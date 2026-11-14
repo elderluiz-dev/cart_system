@@ -15,14 +15,13 @@ class User():
     def from_dict(cls, data):
         return cls(name=data['name'], email=data['email'], password=data['password'])
 
-
 def login(users):
     print("=== SHOPPING ===")
     email = input("Email: ")
     password = input("Senha: ")
 
     for user in users:
-        if user['email'] == email and user['password'] == password:
+        if email == user.email and password == user.password:
             return user
     
     return None
