@@ -60,19 +60,24 @@ def main():
 
             case "4":
                 clear()
-                while True:
-                    admc = admin_menu()
-                    match admc:
-                        case "1":
-                            clear()
-                        case "2":
-                            clear()
-                        case "0":
-                            clear()
-                            break
-                        case _:
-                            clear()
-                            print("Opção inválida.\n")
+                if user.admin == False:
+                    clear()
+                    print("Usuário sem permissão de administrador.\n")
+                else:
+
+                    while True:
+                        admc = admin_menu()
+                        match admc:
+                            case "1":
+                                clear()
+                            case "2":
+                                clear()
+                            case "0":
+                                clear()
+                                break
+                            case _:
+                                clear()
+                                print("Opção inválida.\n")
 
 
             case "0":

@@ -1,7 +1,14 @@
 [
     {
-        "name": "elder",
-        "email": "elder72@gmail.com",
-        "password": "123"
+        "name": "Elder",
+        "email": "el72.com",
+        "password": "123",
+        "admin": false
+    },
+    {
+        "name": "Elder",
+        "email": "elderluiz72@gmail.com",
+        "password": "1234",
+        "admin": true
     }
 ]
