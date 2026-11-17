@@ -1,3 +1,4 @@
+from lib import product
 from lib.cart import *
 from lib.product import *
 from lib.user import *
@@ -12,6 +13,19 @@ def main():
 
     except FileNotFoundError:
         users = []
+
+    try:
+        with open("products.json", "r", encoding='utf-8') as file:
+            data = json.load(file)
+            products = [Product.from_dict(product) for product in data]
+            id = 0
+            for product in products:
+                if product['id'] > id:
+                    id = product['id']
+
+    except:
+        products = []
+        id = 0
 
     clear()
     method = initial()
@@ -70,6 +84,11 @@ def main():
                         match admc:
                             case "1":
                                 clear()
+                                new_prod = create_product()
+                                products.append(new_prod)
+                                clear()
+                                print("Produto adiconado com sucesso!\n")
+
                             case "2":
                                 clear()
                             case "0":
@@ -84,6 +103,9 @@ def main():
                 clear()
                 with open("users.json", "w", encoding='utf-8') as file:
                     json.dump([user.to_dict() for user in users], file, indent=4, ensure_ascii=False)
+    
+                with open("products.json", "w", encoding='utf-8') as file:
+                    json.dump([Product.to_dict() for product in products], file, indent=4, ensure_ascii=False)
 
                 print("O usuário encerrou o sistema.\n")
                 break

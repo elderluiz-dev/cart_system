@@ -1,3 +1,6 @@
+from lib.product import Product
+
+
 def clear():
     print('\033[H\033[2J', end='')
 
@@ -29,3 +32,13 @@ def initial():
     c = input("> ")
 
     return c
+
+def create_product():    
+    name = input("Nome: ")
+    desc = input("Descrição: ")
+    price = input("Preço: ")
+    quant = input("Quantidade: ")
+
+    new_product = Product(name, desc, price, quant)
+
+    return new_product
