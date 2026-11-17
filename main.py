@@ -87,7 +87,7 @@ def main():
                                 new_prod = create_product(id)
                                 products.append(new_prod)
                                 clear()
-                                print("Produto adiconado com sucesso!\n")
+                                print("Produto criado com sucesso!\n")
 
                             case "2":
                                 clear()
