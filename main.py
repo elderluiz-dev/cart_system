@@ -1,4 +1,3 @@
-from lib import product
 from lib.cart import *
 from lib.product import *
 from lib.user import *
@@ -20,10 +19,11 @@ def main():
             products = [Product.from_dict(product) for product in data]
             id = 0
             for product in products:
-                if product['id'] > id:
+                if product._id > id:
                     id = product['id']
+            id += 1
 
-    except:
+    except FileNotFoundError:
         products = []
         id = 0
 
@@ -84,7 +84,7 @@ def main():
                         match admc:
                             case "1":
                                 clear()
-                                new_prod = create_product()
+                                new_prod = create_product(id)
                                 products.append(new_prod)
                                 clear()
                                 print("Produto adiconado com sucesso!\n")
@@ -105,7 +105,7 @@ def main():
                     json.dump([user.to_dict() for user in users], file, indent=4, ensure_ascii=False)
     
                 with open("products.json", "w", encoding='utf-8') as file:
-                    json.dump([Product.to_dict() for product in products], file, indent=4, ensure_ascii=False)
+                    json.dump([product.to_dict() for product in products], file, indent=4, ensure_ascii=False)
 
                 print("O usuário encerrou o sistema.\n")
                 break

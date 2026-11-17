@@ -6,7 +6,7 @@ class Product():
         self.price = price
         self.stock_quant = stock_quant
             
-        def to_dict(self):
+    def to_dict(self):
             return {
                 "_id": self._id,
                 "name": self.name,
@@ -15,6 +15,6 @@ class Product():
                 "stock_quant": self.stock_quant
             }
 
-        @classmethod
-        def from_dict(cls, data):
-            return cls(_id=['_id'], name=['name'], desc=['desc'], price=['price'], stock_quant=['stock_quant'])
+    @classmethod
+    def from_dict(cls, data):
+        return cls(id=data['_id'], name=data['name'], desc=data['desc'], price=data['price'], stock_quant=data['stock_quant'])

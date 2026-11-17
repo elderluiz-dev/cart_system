@@ -33,12 +33,12 @@ def initial():
 
     return c
 
-def create_product():    
+def create_product(id):    
     name = input("Nome: ")
     desc = input("Descrição: ")
-    price = input("Preço: ")
-    quant = input("Quantidade: ")
+    price = float(input("Preço: "))
+    quant = int(input("Quantidade: "))
 
-    new_product = Product(name, desc, price, quant)
+    new_product = Product(id, name, desc, price, quant)
 
     return new_product
